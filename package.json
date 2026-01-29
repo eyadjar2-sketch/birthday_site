@@ -1,0 +1,13 @@
+{
+  "name": "birthday-site",
+  "version": "1.0.0",
+  "description": "Birthday greeting website",
+  "main": "index.js",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": ["birthday", "greeting"],
+  "author": "",
+  "license": "ISC"
+}
