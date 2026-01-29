@@ -41,7 +41,7 @@
             z-index: 0;
         }
 
-        /* Широкий decoration вверху первой страницы - УВЕЛИЧЕН */
+        /* Широкий decoration вверху первой страницы */
         .decoration-top-wide {
             position: absolute;
             top: 0;
@@ -70,13 +70,16 @@
             text-align: center;
             animation: fadeInScale 1s ease-out;
             margin-top: 220px;
+            width: 90%;
+            max-width: 800px;
         }
 
         /* GIF увеличен и полностью виден */
         .happy-gif {
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
             height: 200px;
-            margin-bottom: 30px;
+            margin: 0 auto 30px auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,7 +173,7 @@
             transform: translateY(-1px);
         }
 
-        /* ===== DECORATIONS PAGE 1 - УВЕЛИЧЕНЫ ===== */
+        /* ===== DECORATIONS PAGE 1 ===== */
         .decoration-bottom-right {
             position: absolute;
             bottom: 60px;
@@ -197,6 +200,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow-y: auto; /* Добавляем прокрутку на мобильных */
         }
 
         .page2::before {
@@ -213,7 +217,8 @@
             display: flex;
             width: 100%;
             max-width: 1400px;
-            height: 80vh;
+            height: auto;
+            min-height: 80vh;
             gap: 40px;
             align-items: center;
             justify-content: space-between;
@@ -290,7 +295,7 @@
             text-align: left;
         }
 
-        /* ===== DECORATIONS PAGE 2 - УВЕЛИЧЕН ===== */
+        /* ===== DECORATIONS PAGE 2 ===== */
         .decoration-top-right-page2 {
             position: absolute;
             top: 60px;
@@ -727,11 +732,20 @@
             }
         }
 
+        /* УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
         @media (max-width: 992px) {
+            .page2 {
+                height: auto;
+                min-height: 100vh;
+                padding: 80px 20px 40px 20px; /* Больше отступов сверху для кнопки назад */
+                overflow-y: auto;
+            }
+            
             .page2-content {
                 flex-direction: column;
                 height: auto;
-                gap: 30px;
+                gap: 40px;
+                margin-top: 40px;
             }
             
             .page2-left, .page2-center, .page2-right {
@@ -742,20 +756,24 @@
             
             .page2-left {
                 order: 1;
+                margin-bottom: 20px;
             }
             
             .page2-center {
                 order: 2;
+                margin: 20px 0;
             }
             
             .page2-right {
                 order: 3;
                 justify-content: center;
+                margin-top: 30px;
             }
             
             .page2-left h2 {
                 text-align: center;
                 font-size: 2.8rem;
+                margin-bottom: 20px;
             }
             
             .page2-left p {
@@ -763,18 +781,30 @@
                 font-size: 1.2rem;
                 max-width: 600px;
                 margin: 0 auto;
+                line-height: 1.7;
             }
             
             .photo-frame {
                 width: 320px;
                 height: 570px;
+                margin: 0 auto;
             }
             
             .decoration-top-right-page2 {
-                width: 200px;
-                height: 200px;
-                top: 40px;
-                right: 40px;
+                width: 120px;
+                height: 120px;
+                top: 100px; /* Ниже, чтобы не мешало кнопке назад */
+                right: 20px;
+                opacity: 0.7;
+            }
+            
+            /* Убедимся, что кнопка видна */
+            .page2-right .btn {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                width: auto;
+                display: inline-block;
+                margin-top: 20px;
             }
         }
 
@@ -784,12 +814,14 @@
             }
 
             .happy-gif {
-                width: 450px;
+                max-width: 450px;
                 height: 150px;
+                margin-bottom: 20px;
             }
 
             .page1 p {
                 font-size: 2rem;
+                margin-bottom: 40px;
             }
 
             .decoration-top-wide {
@@ -801,12 +833,13 @@
             }
 
             .decoration-bottom-right {
-                width: 220px;
-                height: 220px;
+                width: 200px;
+                height: 200px;
                 bottom: 30px;
                 right: 30px;
             }
-
+            
+            /* Вторая страница для планшетов */
             .page2-left h2 {
                 font-size: 2.5rem;
             }
@@ -822,10 +855,10 @@
             }
             
             .decoration-top-right-page2 {
-                width: 150px;
-                height: 150px;
-                top: 30px;
-                right: 30px;
+                width: 100px;
+                height: 100px;
+                top: 90px;
+                right: 15px;
             }
 
             .page3 h1 {
@@ -878,9 +911,94 @@
         }
 
         @media (max-width: 480px) {
+            .page1-content {
+                margin-top: 140px;
+                width: 95%;
+            }
+            
+            .page1 h1 {
+                font-size: 2.5rem;
+            }
+            
+            .happy-gif {
+                max-width: 320px;
+                height: 120px;
+                margin-bottom: 15px;
+            }
+            
+            .page1 p {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .btn {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+            
+            .decoration-top-wide {
+                height: 140px;
+            }
+            
+            .decoration-bottom-right {
+                width: 150px;
+                height: 150px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Вторая страница для телефонов */
+            .page2 {
+                padding: 70px 15px 30px 15px;
+            }
+            
+            .page2-content {
+                gap: 30px;
+            }
+            
+            .page2-left h2 {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+            
+            .page2-left p {
+                font-size: 1rem;
+                padding: 0 10px;
+                line-height: 1.6;
+            }
+            
+            .photo-frame {
+                width: 250px;
+                height: 445px;
+            }
+            
+            .page2-right .btn {
+                padding: 12px 35px;
+                font-size: 1.1rem;
+                margin-top: 10px;
+            }
+            
+            .decoration-top-right-page2 {
+                width: 80px;
+                height: 80px;
+                top: 80px;
+                right: 10px;
+                opacity: 0.6;
+            }
+            
+            .back-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                top: 15px;
+                left: 15px;
+            }
+            
+            /* Третья страница для телефонов */
             .floating-buttons-container {
                 width: 98%;
                 height: 45vh;
+                margin: 10px 0;
             }
             
             .floating-button {
@@ -889,36 +1007,15 @@
                 font-size: 1.5rem;
             }
             
-            .photo-frame {
-                width: 220px;
-                height: 390px;
+            .page3 h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
             }
             
-            .decoration-top-wide {
-                height: 140px;
-            }
-            
-            .page1-content {
-                margin-top: 130px;
-            }
-            
-            .happy-gif {
-                width: 320px;
-                height: 120px;
-            }
-            
-            .decoration-bottom-right {
-                width: 180px;
-                height: 180px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .decoration-top-right-page2 {
-                width: 150px;
-                height: 150px;
-                top: 20px;
-                right: 20px;
+            .page3 p {
+                font-size: 1rem;
+                margin-top: 10px;
+                padding: 0 10px;
             }
             
             .modal-image {
@@ -927,6 +1024,44 @@
             
             .modal-text {
                 padding: 20px;
+            }
+            
+            .modal-text h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Очень маленькие телефоны */
+        @media (max-width: 360px) {
+            .page1 h1 {
+                font-size: 2.2rem;
+            }
+            
+            .happy-gif {
+                max-width: 280px;
+                height: 100px;
+            }
+            
+            .page1 p {
+                font-size: 1.6rem;
+            }
+            
+            .page2-left h2 {
+                font-size: 2rem;
+            }
+            
+            .page2-left p {
+                font-size: 0.95rem;
+            }
+            
+            .photo-frame {
+                width: 220px;
+                height: 390px;
+            }
+            
+            .page2-right .btn {
+                padding: 10px 30px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -940,20 +1075,20 @@
 
     <!-- PAGE 1 -->
     <div id="page1" class="page1">
-        <!-- Широкий decoration вверху на всю ширину - УВЕЛИЧЕН -->
+        <!-- Широкий decoration вверху на всю ширину -->
         <div class="decoration-top-wide">
-            <img src="images/الزينة/newstar.png" alt="stars decoration">
+            <img src="images/الزينة/starts.png" alt="stars decoration">
         </div>
         
-        <!-- Правый нижний угол - cake.jpg - УВЕЛИЧЕН -->
+        <!-- Правый нижний угол - cake.jpg -->
         <div class="decoration-bottom-right">
-            <img src="images/الزينة/Untitled.png" alt="cake decoration">
+            <img src="images/الزينة/cake.jpg" alt="cake decoration">
         </div>
         
         <div class="page1-content">
-            <!-- Порядок: сначала GIF (увеличен и полностью виден), потом текст "21 год назад", потом текст "родилась самая милая девушка" -->
+            <!-- Порядок: сначала GIF, потом текст "21 год назад", потом текст "родилась самая милая девушка" -->
             <div class="happy-gif">
-                <img src="images/الزينة/newhappy.gif" alt="happy birthday">
+                <img src="images/الزينة/happy.gif" alt="happy birthday">
             </div>
             
             <h1>21 год назад</h1>
@@ -968,9 +1103,9 @@
     <div id="page2" class="page2 hidden">
         <button class="back-btn" onclick="goToPage1()">←</button>
         
-        <!-- Один decoration в правом верхнем углу - rose.jpg - УВЕЛИЧЕН -->
+        <!-- Один decoration в правом верхнем углу - rose.jpg -->
         <div class="decoration-top-right-page2">
-            <img src="images/الزينة/rose2.png" alt="rose decoration">
+            <img src="images/الزينة/rose.jpg" alt="rose decoration">
         </div>
         
         <div class="page2-content">
