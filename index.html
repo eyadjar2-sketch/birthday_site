@@ -193,14 +193,14 @@
         /* ===== PAGE 2 - НОВАЯ СТРУКТУРА ===== */
         .page2 {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             background: url('images/wall2.jpg') center/cover fixed;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            overflow-y: auto; /* Добавляем прокрутку на мобильных */
+            overflow-y: auto;
         }
 
         .page2::before {
@@ -257,6 +257,7 @@
             border: 5px solid rgba(255, 255, 255, 0.4);
             animation: scaleFrame 3s ease-in-out infinite;
             position: relative;
+            flex-shrink: 0;
         }
 
         .photo-frame::before {
@@ -498,7 +499,10 @@
         .modal {
             display: none;
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.97);
             backdrop-filter: blur(15px);
             z-index: 100;
@@ -732,20 +736,20 @@
             }
         }
 
-        /* УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
+        /* ===== УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ УСТРОЙСТВ ===== */
         @media (max-width: 992px) {
             .page2 {
                 height: auto;
                 min-height: 100vh;
-                padding: 80px 20px 40px 20px; /* Больше отступов сверху для кнопки назад */
+                padding: 100px 20px 60px 20px;
                 overflow-y: auto;
             }
             
             .page2-content {
                 flex-direction: column;
                 height: auto;
-                gap: 40px;
-                margin-top: 40px;
+                gap: 30px;
+                margin-top: 20px;
             }
             
             .page2-left, .page2-center, .page2-right {
@@ -756,7 +760,7 @@
             
             .page2-left {
                 order: 1;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
             
             .page2-center {
@@ -767,7 +771,8 @@
             .page2-right {
                 order: 3;
                 justify-content: center;
-                margin-top: 30px;
+                margin-top: 20px;
+                padding: 0;
             }
             
             .page2-left h2 {
@@ -793,18 +798,21 @@
             .decoration-top-right-page2 {
                 width: 120px;
                 height: 120px;
-                top: 100px; /* Ниже, чтобы не мешало кнопке назад */
+                top: 100px;
                 right: 20px;
                 opacity: 0.7;
             }
             
-            /* Убедимся, что кнопка видна */
+            /* Кнопка на второй странице - ВИДНА И НАЖИМАЕМА */
             .page2-right .btn {
-                padding: 15px 40px;
+                padding: 16px 45px;
                 font-size: 1.2rem;
                 width: auto;
                 display: inline-block;
                 margin-top: 20px;
+                margin-bottom: 20px;
+                z-index: 5;
+                position: relative;
             }
         }
 
@@ -898,7 +906,108 @@
 
             .modal-nav button {
                 width: 80%;
-                max-width: 200px;
+                min-width: auto;
+            }
+        }
+
+        /* ===== МОБИЛЬНЫЕ УСТРОЙСТВА (до 576px) ===== */
+        @media (max-width: 576px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .page1 {
+                height: auto;
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .page1 h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .happy-gif {
+                max-width: 350px;
+                height: 120px;
+                margin-bottom: 15px;
+            }
+
+            .page1 p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+
+            .btn {
+                padding: 14px 35px;
+                font-size: 1.1rem;
+            }
+
+            .decoration-top-wide {
+                height: 140px;
+            }
+            
+            .page1-content {
+                margin-top: 120px;
+            }
+
+            .decoration-bottom-right {
+                width: 150px;
+                height: 150px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            /* PAGE 2 - МОБИЛЬНАЯ ВЕРСИЯ */
+            .page2 {
+                height: auto;
+                min-height: 100vh;
+                padding: 90px 15px 50px 15px;
+                overflow-y: auto;
+            }
+
+            .page2-content {
+                flex-direction: column;
+                height: auto;
+                gap: 25px;
+                margin-top: 15px;
+            }
+
+            .page2-left h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .page2-left p {
+                font-size: 1rem;
+                line-height: 1.6;
+                padding: 0 10px;
+            }
+
+            .photo-frame {
+                width: 260px;
+                height: 460px;
+                margin: 0 auto;
+            }
+
+            .decoration-top-right-page2 {
+                width: 80px;
+                height: 80px;
+                top: 80px;
+                right: 10px;
+            }
+
+            /* Кнопка на мобильной версии - ЧЕТКО ВИДНА И НАЖИМАЕМА */
+            .page2-right .btn {
+                padding: 14px 40px;
+                font-size: 1rem;
+                width: auto;
+                display: inline-block;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                z-index: 5;
+                position: relative;
+                touch-action: manipulation;
             }
 
             .back-btn {
@@ -908,160 +1017,112 @@
                 top: 20px;
                 left: 20px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .page1-content {
-                margin-top: 140px;
-                width: 95%;
-            }
-            
-            .page1 h1 {
-                font-size: 2.5rem;
-            }
-            
-            .happy-gif {
-                max-width: 320px;
-                height: 120px;
-                margin-bottom: 15px;
-            }
-            
-            .page1 p {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
-            
-            .btn {
-                padding: 15px 40px;
-                font-size: 1.1rem;
-            }
-            
-            .decoration-top-wide {
-                height: 140px;
-            }
-            
-            .decoration-bottom-right {
-                width: 150px;
-                height: 150px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            /* Вторая страница для телефонов */
-            .page2 {
-                padding: 70px 15px 30px 15px;
-            }
-            
-            .page2-content {
-                gap: 30px;
-            }
-            
-            .page2-left h2 {
-                font-size: 2.2rem;
-                margin-bottom: 15px;
-            }
-            
-            .page2-left p {
-                font-size: 1rem;
-                padding: 0 10px;
-                line-height: 1.6;
-            }
-            
-            .photo-frame {
-                width: 250px;
-                height: 445px;
-            }
-            
-            .page2-right .btn {
-                padding: 12px 35px;
-                font-size: 1.1rem;
-                margin-top: 10px;
-            }
-            
-            .decoration-top-right-page2 {
-                width: 80px;
-                height: 80px;
-                top: 80px;
-                right: 10px;
-                opacity: 0.6;
-            }
-            
-            .back-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-                top: 15px;
-                left: 15px;
-            }
-            
-            /* Третья страница для телефонов */
-            .floating-buttons-container {
-                width: 98%;
-                height: 45vh;
-                margin: 10px 0;
-            }
-            
-            .floating-button {
-                width: 55px;
-                height: 55px;
-                font-size: 1.5rem;
-            }
-            
             .page3 h1 {
                 font-size: 2rem;
                 margin-bottom: 15px;
             }
-            
+
             .page3 p {
                 font-size: 1rem;
                 margin-top: 10px;
                 padding: 0 10px;
             }
-            
-            .modal-image {
-                height: 50vh;
+
+            .floating-buttons-container {
+                width: 95%;
+                height: 45vh;
+                max-width: 100%;
             }
-            
+
+            .floating-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+
+            .modal-image {
+                height: 45vh;
+            }
+
             .modal-text {
                 padding: 20px;
             }
-            
+
             .modal-text h3 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+
+            .modal-text p {
+                font-size: 0.95rem;
+            }
+
+            .modal-nav {
+                flex-direction: column;
+                gap: 10px;
+                padding: 0 15px;
+            }
+
+            .modal-nav button {
+                width: 100%;
+                padding: 10px 20px;
+                font-size: 1rem;
+                min-width: auto;
+            }
+
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
             }
         }
 
-        /* Очень маленькие телефоны */
-        @media (max-width: 360px) {
+        /* ===== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 375px) ===== */
+        @media (max-width: 375px) {
             .page1 h1 {
-                font-size: 2.2rem;
-            }
-            
-            .happy-gif {
-                max-width: 280px;
-                height: 100px;
-            }
-            
-            .page1 p {
-                font-size: 1.6rem;
-            }
-            
-            .page2-left h2 {
                 font-size: 2rem;
             }
-            
+
+            .happy-gif {
+                max-width: 300px;
+                height: 100px;
+            }
+
+            .page1 p {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .page2-left h2 {
+                font-size: 1.8rem;
+            }
+
             .page2-left p {
                 font-size: 0.95rem;
             }
-            
+
             .photo-frame {
-                width: 220px;
-                height: 390px;
+                width: 240px;
+                height: 425px;
             }
-            
+
             .page2-right .btn {
-                padding: 10px 30px;
-                font-size: 1rem;
+                padding: 12px 35px;
+                font-size: 0.95rem;
+            }
+
+            .page3 h1 {
+                font-size: 1.8rem;
+            }
+
+            .floating-button {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -1077,18 +1138,18 @@
     <div id="page1" class="page1">
         <!-- Широкий decoration вверху на всю ширину -->
         <div class="decoration-top-wide">
-            <img src="images/الزينة/starts.png" alt="stars decoration">
+            <img src="images/الزينة/newstar.png" alt="stars decoration">
         </div>
         
         <!-- Правый нижний угол - cake.jpg -->
         <div class="decoration-bottom-right">
-            <img src="images/الزينة/cake.jpg" alt="cake decoration">
+            <img src="images/الزينة/Untitled.png" alt="cake decoration">
         </div>
         
         <div class="page1-content">
             <!-- Порядок: сначала GIF, потом текст "21 год назад", потом текст "родилась самая милая девушка" -->
             <div class="happy-gif">
-                <img src="images/الزينة/happy.gif" alt="happy birthday">
+                <img src="images/الزينة/newhappy.gif" alt="happy birthday">
             </div>
             
             <h1>21 год назад</h1>
@@ -1105,7 +1166,7 @@
         
         <!-- Один decoration в правом верхнем углу - rose.jpg -->
         <div class="decoration-top-right-page2">
-            <img src="images/الزينة/rose.jpg" alt="rose decoration">
+            <img src="images/الزينة/rose2.png" alt="rose decoration">
         </div>
         
         <div class="page2-content">
@@ -1183,13 +1244,13 @@
             setTimeout(playMusic, 500);
         });
 
-        const photos = [
-            { id: 'best', emoji: '📸', image: 'images/the 8 photos/best.jpg', text: '', type: 'best' },
-            { id: 'camp', emoji: '🎉', image: 'images/the 8 photos/camp.jpg', text: '', type: 'camp' },
-            { id: 'vibe', emoji: '✨', image: 'images/the 8 photos/vibe.jpg', text: '', type: 'vibe' },
-            { id: 'brics', emoji: '💕', image: 'images/the 8 photos/brics.jpg', text: '', type: 'other' },
-            { id: 'club', emoji: '🌟', image: 'images/the 8 photos/club.jpg', text: '', type: 'other' },
-            { id: 'korean', emoji: '🎊', image: 'images/the 8 photos/korean.jpg', text: '', type: 'other' },
+       const photos = [
+            { id: 'best', emoji: '🌟', image: 'images/the 8 photos/best.jpg', text: '', type: 'best' },
+            { id: 'camp', emoji: '🌲', image: 'images/the 8 photos/camp.jpg', text: '', type: 'camp' },
+            { id: 'vibe', emoji: '🔥', image: 'images/the 8 photos/vibe.jpg', text: '', type: 'vibe' },
+            { id: 'brics', emoji: '🏆', image: 'images/the 8 photos/brics.jpg', text: '', type: 'other' },
+            { id: 'club', emoji: '🌏', image: 'images/the 8 photos/club.jpg', text: '', type: 'other' },
+            { id: 'korean', emoji: '🪭', image: 'images/the 8 photos/korean.jpg', text: '', type: 'other' },
             { id: 'queen', emoji: '👑', image: 'images/the 8 photos/queen.jpg', text: '', type: 'other' },
             { id: 'student', emoji: '📚', image: 'images/the 8 photos/student.jpg', text: '', type: 'other' },
         ];
@@ -1286,132 +1347,94 @@
                     const dy = button2.y - button1.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < button1.size) {
-                        const nx = dx / distance;
-                        const ny = dy / distance;
+                    if (distance < button1.size + button2.size) {
+                        const angle = Math.atan2(dy, dx);
+                        const sin = Math.sin(angle);
+                        const cos = Math.cos(angle);
                         
-                        const overlap = (button1.size - distance) / 2;
+                        const vx1 = button1.vx * cos + button1.vy * sin;
+                        const vy1 = button1.vy * cos - button1.vx * sin;
+                        const vx2 = button2.vx * cos + button2.vy * sin;
+                        const vy2 = button2.vy * cos - button2.vx * sin;
                         
-                        button1.x -= overlap * nx;
-                        button1.y -= overlap * ny;
-                        button2.x += overlap * nx;
-                        button2.y += overlap * ny;
+                        button1.vx = vx2 * cos - vy1 * sin;
+                        button1.vy = vy1 * cos + vx2 * sin;
+                        button2.vx = vx1 * cos - vy2 * sin;
+                        button2.vy = vy2 * cos + vx1 * sin;
                         
-                        button1.element.style.left = button1.x + 'px';
-                        button1.element.style.top = button1.y + 'px';
-                        button2.element.style.left = button2.x + 'px';
-                        button2.element.style.top = button2.y + 'px';
-                        
-                        const dvx = button2.vx - button1.vx;
-                        const dvy = button2.vy - button1.vy;
-                        
-                        const speed = dvx * nx + dvy * ny;
-                        
-                        if (speed > 0) continue;
-                        
-                        const impulse = 2 * speed / 2;
-                        
-                        button1.vx += impulse * nx;
-                        button1.vy += impulse * ny;
-                        button2.vx -= impulse * nx;
-                        button2.vy -= impulse * ny;
-                        
-                        button1.vx += (Math.random() - 0.5) * 0.2;
-                        button1.vy += (Math.random() - 0.5) * 0.2;
-                        button2.vx += (Math.random() - 0.5) * 0.2;
-                        button2.vy += (Math.random() - 0.5) * 0.2;
+                        const overlap = (button1.size + button2.size - distance) / 2;
+                        button1.x -= overlap * cos;
+                        button1.y -= overlap * sin;
+                        button2.x += overlap * cos;
+                        button2.y += overlap * sin;
                     }
                 }
-            }
-
-            const maxSpeed = 5;
-            for (const button of buttons) {
-                const speed = Math.sqrt(button.vx * button.vx + button.vy * button.vy);
-                if (speed > maxSpeed) {
-                    button.vx = (button.vx / speed) * maxSpeed;
-                    button.vy = (button.vy / speed) * maxSpeed;
-                }
-                
-                button.vx *= 0.999;
-                button.vy *= 0.999;
             }
 
             animationId = requestAnimationFrame(animateFloatingButtons);
         }
 
-        function goToPage1() {
-            document.getElementById('page1').classList.remove('hidden');
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.add('hidden');
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-            }
-        }
-
-        function goToPage2() {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.remove('hidden');
-            document.getElementById('page3').classList.add('hidden');
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-            }
-        }
-
-        function goToPage3() {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.remove('hidden');
-            
-            setTimeout(() => {
-                initializeFloatingButtons();
-                window.addEventListener('resize', initializeFloatingButtons);
-            }, 100);
-        }
-
         function showPhoto(photoId) {
             currentPhotoIndex = photos.findIndex(p => p.id === photoId);
-            const photo = photos[currentPhotoIndex];
-            
-            document.getElementById('modalImage').src = photo.image;
-            
-            const modalText = document.getElementById('modalText');
-            if (photo.specialText) {
-                modalText.innerHTML = `<h3>${photo.text}</h3><p>${photo.specialText}</p>`;
-            } else {
-                modalText.innerHTML = `<h3>${photo.text}</h3>`;
-            }
-            
+            displayPhoto();
             document.getElementById('modal').classList.add('active');
+        }
+
+        function displayPhoto() {
+            const photo = photos[currentPhotoIndex];
+            document.getElementById('modalImage').src = photo.image;
+            document.getElementById('modalText').innerHTML = `<h3>${photo.emoji} ${photo.id.toUpperCase()}</h3><p>${photo.text}</p>`;
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            displayPhoto();
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+            displayPhoto();
         }
 
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
         }
 
-        function prevPhoto() {
-            currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
-            const photo = photos[currentPhotoIndex];
-            showPhoto(photo.id);
+        function goToPage1() {
+            document.getElementById('page1').classList.remove('hidden');
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.add('hidden');
+            closeModal();
         }
 
-        function nextPhoto() {
-            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-            const photo = photos[currentPhotoIndex];
-            showPhoto(photo.id);
+        function goToPage2() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+            document.getElementById('page3').classList.add('hidden');
+            closeModal();
         }
 
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        function goToPage3() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.remove('hidden');
+            closeModal();
+            
+            // Инициализируем плавающие кнопки при переходе на страницу 3
+            setTimeout(initializeFloatingButtons, 100);
+        }
+
+        // Инициализируем при загрузке
+        window.addEventListener('resize', () => {
+            if (!document.getElementById('page3').classList.contains('hidden')) {
+                initializeFloatingButtons();
             }
         });
 
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden && animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
+        // Закрытие модального окна при клике на фон
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
             }
         });
     </script>
